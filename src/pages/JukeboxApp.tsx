@@ -6,6 +6,8 @@ import MusicQueue from "@/components/MusicQueue";
 import AddMusicModal from "@/components/AddMusicModal";
 import { MusicTrack, CommercialTrack } from "@/types/music";
 import { usePlayerStore } from "@/store/playerStore";
+import { Plus, Music } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const JukeboxApp = () => {
   const { 
@@ -119,6 +121,16 @@ const JukeboxApp = () => {
       
       <main className="flex-1 container mx-auto p-6 flex flex-col md:flex-row gap-8">
         <div className="w-full md:w-2/3 glass-panel rounded-2xl p-6 shadow-xl backdrop-blur-lg">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-xl font-semibold">Player</h2>
+            <Button 
+              onClick={() => setIsAddMusicOpen(true)} 
+              className="btn-primary flex items-center gap-2"
+            >
+              <Plus size={18} />
+              <span>Adicionar Música</span>
+            </Button>
+          </div>
           <MusicPlayer 
             audioRef={audioRef}
             onAddMusic={() => setIsAddMusicOpen(true)}
