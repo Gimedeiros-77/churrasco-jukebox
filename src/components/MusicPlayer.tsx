@@ -1,4 +1,3 @@
-
 import { RefObject, useEffect } from "react";
 import { Play, Pause, SkipBack, SkipForward, Plus, Volume2, Volume1, VolumeX } from "lucide-react";
 import { formatTime } from "@/lib/utils";
@@ -27,12 +26,10 @@ const MusicPlayer = ({ audioRef, onAddMusic }: MusicPlayerProps) => {
     incrementPlayedTime
   } = usePlayerStore();
 
-  // Set up audio element and event listeners
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    // Update audio src when current track changes
     if (currentTrack) {
       audio.src = currentTrack.url;
       if (isPlaying) {
@@ -40,7 +37,6 @@ const MusicPlayer = ({ audioRef, onAddMusic }: MusicPlayerProps) => {
       }
     }
 
-    // Set up event listeners
     const handleTimeUpdate = () => {
       if (audio.duration) {
         setProgress((audio.currentTime / audio.duration) * 100);
@@ -51,17 +47,15 @@ const MusicPlayer = ({ audioRef, onAddMusic }: MusicPlayerProps) => {
       skipTrack();
     };
 
-    // Track played time for commercial timing
     const playedTimeInterval = setInterval(() => {
       if (isPlaying) {
-        incrementPlayedTime(1000); // increment by 1 second in ms
+        incrementPlayedTime(1000);
       }
     }, 1000);
 
     audio.addEventListener("timeupdate", handleTimeUpdate);
     audio.addEventListener("ended", handleEnded);
 
-    // Clean up
     return () => {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
       audio.removeEventListener("ended", handleEnded);
@@ -69,7 +63,6 @@ const MusicPlayer = ({ audioRef, onAddMusic }: MusicPlayerProps) => {
     };
   }, [currentTrack, isPlaying]);
 
-  // Control playback
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -81,7 +74,6 @@ const MusicPlayer = ({ audioRef, onAddMusic }: MusicPlayerProps) => {
     }
   }, [isPlaying]);
 
-  // Control volume
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -89,7 +81,6 @@ const MusicPlayer = ({ audioRef, onAddMusic }: MusicPlayerProps) => {
     audio.volume = isMuted ? 0 : volume / 100;
   }, [volume, isMuted]);
 
-  // Handle seeking
   const handleSeek = (value: number[]) => {
     const audio = audioRef.current;
     if (!audio || !currentTrack) return;
@@ -99,36 +90,31 @@ const MusicPlayer = ({ audioRef, onAddMusic }: MusicPlayerProps) => {
     audio.currentTime = (newPosition / 100) * audio.duration;
   };
 
-  // Get current time for display
   const getCurrentTime = () => {
     const audio = audioRef.current;
     if (!audio) return "0:00";
     return formatTime(audio.currentTime);
   };
 
-  // Get total duration for display
   const getTotalTime = () => {
     const audio = audioRef.current;
     if (!audio || !audio.duration) return "0:00";
     return formatTime(audio.duration);
   };
 
-  // Volume icon based on current volume level
   const VolumeIcon = isMuted 
     ? VolumeX 
     : volume > 50 
       ? Volume2 
       : Volume1;
 
-  // Animation styles for playing state
   const waveBarClass = "w-1 mx-[1px] bg-ember-500 rounded-full transform origin-bottom transition-all duration-300";
 
   return (
     <div className="flex flex-col h-full">
       <audio ref={audioRef} className="hidden" />
       
-      {/* Track Info */}
-      <div className="flex-1 flex flex-col items-center justify-center mb-8">
+      <div className="flex-1 flex flex-col items-center justify-center mb-6">
         {currentTrack ? (
           <>
             <div className="h-24 w-full flex items-end justify-center mb-6">
@@ -177,7 +163,6 @@ const MusicPlayer = ({ audioRef, onAddMusic }: MusicPlayerProps) => {
         )}
       </div>
       
-      {/* Progress Bar */}
       <div className="mb-4">
         <Slider
           value={[progress]}
@@ -194,62 +179,57 @@ const MusicPlayer = ({ audioRef, onAddMusic }: MusicPlayerProps) => {
         </div>
       </div>
       
-      {/* Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div className="flex flex-1 justify-center items-center gap-2 md:gap-4">
-          <button 
-            onClick={previousTrack}
-            disabled={!currentTrack || queue.length === 0}
-            className="btn-control text-coal-700 disabled:opacity-50 disabled:cursor-not-allowed"
-            aria-label="Música anterior"
-          >
-            <SkipBack size={24} />
-          </button>
-          
-          <button 
-            onClick={() => setIsPlaying(!isPlaying)}
-            disabled={!currentTrack}
-            className="btn-control bg-ember-100 p-4 text-ember-700 disabled:opacity-50 disabled:cursor-not-allowed"
-            aria-label={isPlaying ? "Pausar" : "Reproduzir"}
-          >
-            {isPlaying ? <Pause size={30} /> : <Play size={30} />}
-          </button>
-          
-          <button 
-            onClick={skipTrack}
-            disabled={!currentTrack || queue.length === 0}
-            className="btn-control text-coal-700 disabled:opacity-50 disabled:cursor-not-allowed"
-            aria-label="Próxima música"
-          >
-            <SkipForward size={24} />
-          </button>
-        </div>
-        
-        <div className="flex items-center gap-2 ml-auto">
-          <button 
-            onClick={toggleMute}
-            className="btn-control p-2 text-coal-700"
-            aria-label={isMuted ? "Ativar som" : "Mudo"}
-          >
-            <VolumeIcon size={20} />
-          </button>
-          
-          <Slider
-            value={[isMuted ? 0 : volume]}
-            min={0}
-            max={100}
-            step={1}
-            onValueChange={(value) => setVolume(value[0])}
-            className="w-20 sm:w-24"
-          />
-          
-          <button 
-            onClick={onAddMusic}
-            className="btn-control p-2 text-coal-700"
-            aria-label="Adicionar música"
-          >
-            <Plus size={20} />
-          </button>
+      <div className="relative pb-16">
+        <div className="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md py-4 px-2 rounded-b-xl border-t border-white/20">
+          <div className="flex items-center justify-center gap-4 max-w-full mx-auto">
+            <div className="flex justify-center items-center gap-3">
+              <button 
+                onClick={previousTrack}
+                disabled={!currentTrack || queue.length === 0}
+                className="btn-control text-coal-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Música anterior"
+              >
+                <SkipBack size={22} />
+              </button>
+              
+              <button 
+                onClick={() => setIsPlaying(!isPlaying)}
+                disabled={!currentTrack}
+                className="btn-control bg-ember-100 p-4 text-ember-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label={isPlaying ? "Pausar" : "Reproduzir"}
+              >
+                {isPlaying ? <Pause size={30} /> : <Play size={30} />}
+              </button>
+              
+              <button 
+                onClick={skipTrack}
+                disabled={!currentTrack || queue.length === 0}
+                className="btn-control text-coal-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Próxima música"
+              >
+                <SkipForward size={22} />
+              </button>
+            </div>
+            
+            <div className="hidden sm:flex items-center gap-2">
+              <button 
+                onClick={toggleMute}
+                className="btn-control p-2 text-coal-700"
+                aria-label={isMuted ? "Ativar som" : "Mudo"}
+              >
+                <VolumeIcon size={18} />
+              </button>
+              
+              <Slider
+                value={[isMuted ? 0 : volume]}
+                min={0}
+                max={100}
+                step={1}
+                onValueChange={(value) => setVolume(value[0])}
+                className="w-20"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
