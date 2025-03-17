@@ -16,7 +16,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 25 30% 15%;
 
-    --primary: 25 95% 53%;
+    --primary: 0 85% 40%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 25 30% 95%;
@@ -25,7 +25,7 @@
     --muted: 25 20% 92%;
     --muted-foreground: 25 10% 40%;
 
-    --accent: 25 95% 53%;
+    --accent: 0 85% 40%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -73,12 +73,19 @@
   
   .btn-control {
     @apply rounded-full p-3 transition-all duration-300 ease-out
-      hover:bg-ember-100 active:bg-ember-200 active:scale-95;
+      hover:bg-primary/10 active:bg-primary/20 active:scale-95;
   }
   
   .btn-primary {
-    @apply bg-ember-500 text-white rounded-full px-5 py-2 font-medium shadow-md
+    @apply bg-primary text-white rounded-full px-5 py-2 font-medium shadow-md
       transition-all duration-300 ease-out
-      hover:bg-ember-600 active:bg-ember-700 active:scale-95;
+      hover:bg-primary-600 active:bg-primary-700 active:scale-95;
+  }
+}
+
+@layer utilities {
+  .bg-wood-texture {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/wood-background.jpg');
+    background-color: #5c3d2a; /* Fallback color */
   }
 }

@@ -30,7 +30,7 @@ const JukeboxApp = () => {
   const commercialTrack: CommercialTrack = {
     id: "commercial-default",
     title: "Propaganda da Churrascaria",
-    artist: "Churrascaria",
+    artist: "Churrascaria Original",
     duration: 30,
     url: "/commercial-placeholder.mp3", // Replace with actual commercial when available
     isCommercial: true
@@ -82,7 +82,7 @@ const JukeboxApp = () => {
       const currentTime = audioRef.current?.currentTime || 0;
       
       // Play commercial
-      toast.info("Reproduzindo propaganda da churrascaria", {
+      toast.info("Reproduzindo propaganda da Churrascaria Original", {
         duration: 5000
       });
       
@@ -106,15 +106,14 @@ const JukeboxApp = () => {
   }, [playedTime, lastCommercialTime]);
   
   return (
-    <div className="min-h-screen bg-gradient-to-br from-ember-50 to-coal-50 flex flex-col">
+    <div className="min-h-screen bg-wood-texture bg-cover bg-center flex flex-col">
       <header className="p-6 flex justify-center">
         <div className="text-center">
-          <h1 className="text-3xl md:text-4xl font-display font-semibold text-coal-900">
-            Rádio Churrascaria
-          </h1>
-          <p className="text-coal-600 mt-1">
-            Sistema de música ambiente
-          </p>
+          <img 
+            src="/lovable-uploads/8ae4a6b3-cd5f-463a-a662-3310937de3a4.png" 
+            alt="Churrascaria Original" 
+            className="h-28 mx-auto"
+          />
         </div>
       </header>
       
@@ -131,9 +130,9 @@ const JukeboxApp = () => {
         </div>
       </main>
       
-      <footer className="p-6 text-center text-coal-500">
+      <footer className="p-6 text-center text-white">
         <p className="text-sm">
-          © {new Date().getFullYear()} Rádio Churrascaria • Todos os direitos reservados
+          © {new Date().getFullYear()} Churrascaria Original • Todos os direitos reservados
         </p>
       </footer>
       
