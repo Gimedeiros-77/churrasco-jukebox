@@ -119,8 +119,8 @@ const JukeboxApp = () => {
         </div>
       </header>
       
-      <main className="flex-1 container mx-auto p-6 flex flex-col md:flex-row gap-8">
-        <div className="w-full md:w-2/3 glass-panel rounded-2xl p-6 shadow-xl backdrop-blur-lg">
+      <main className="flex-1 container mx-auto p-6 flex flex-col md:flex-row gap-8 max-w-7xl">
+        <div className="w-full md:w-2/3 glass-panel rounded-2xl p-4 md:p-6 shadow-xl backdrop-blur-lg overflow-hidden">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-semibold">Player</h2>
             <Button 
@@ -128,7 +128,7 @@ const JukeboxApp = () => {
               className="btn-primary flex items-center gap-2"
             >
               <Plus size={18} />
-              <span>Adicionar Música</span>
+              <span className="hidden sm:inline">Adicionar Música</span>
             </Button>
           </div>
           <MusicPlayer 
@@ -137,7 +137,7 @@ const JukeboxApp = () => {
           />
         </div>
         
-        <div className="w-full md:w-1/3 glass-panel rounded-2xl p-6 shadow-xl backdrop-blur-lg">
+        <div className="w-full md:w-1/3 glass-panel rounded-2xl p-4 md:p-6 shadow-xl backdrop-blur-lg overflow-hidden">
           <MusicQueue />
         </div>
       </main>

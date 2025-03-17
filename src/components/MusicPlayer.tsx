@@ -195,8 +195,8 @@ const MusicPlayer = ({ audioRef, onAddMusic }: MusicPlayerProps) => {
       </div>
       
       {/* Controls */}
-      <div className="flex items-center justify-between">
-        <div className="flex-1 flex justify-center items-center gap-2 md:gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex flex-1 justify-center items-center gap-2 md:gap-4">
           <button 
             onClick={previousTrack}
             disabled={!currentTrack || queue.length === 0}
@@ -225,7 +225,7 @@ const MusicPlayer = ({ audioRef, onAddMusic }: MusicPlayerProps) => {
           </button>
         </div>
         
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 ml-auto">
           <button 
             onClick={toggleMute}
             className="btn-control p-2 text-coal-700"
@@ -240,12 +240,12 @@ const MusicPlayer = ({ audioRef, onAddMusic }: MusicPlayerProps) => {
             max={100}
             step={1}
             onValueChange={(value) => setVolume(value[0])}
-            className="w-24"
+            className="w-20 sm:w-24"
           />
           
           <button 
             onClick={onAddMusic}
-            className="btn-control p-2 text-coal-700 ml-2"
+            className="btn-control p-2 text-coal-700"
             aria-label="Adicionar música"
           >
             <Plus size={20} />
