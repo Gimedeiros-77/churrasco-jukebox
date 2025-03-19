@@ -1,91 +1,72 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 24 33% 97%;
-    --foreground: 25 30% 15%;
-
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
-    --card-foreground: 25 30% 15%;
-
+    --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 25 30% 15%;
-
-    --primary: 0 85% 40%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 25 30% 95%;
-    --secondary-foreground: 25 30% 25%;
-
-    --muted: 25 20% 92%;
-    --muted-foreground: 25 10% 40%;
-
-    --accent: 0 85% 40%;
-    --accent-foreground: 0 0% 100%;
-
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 346.8 77.2% 49.8%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-
-    --border: 20 5.9% 90%;
-    --input: 20 5.9% 90%;
-    --ring: 24 5.9% 10%;
-
-    --radius: 0.75rem;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 346.8 77.2% 49.8%;
+    --radius: 0.5rem;
   }
-  
+
+  .dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 0 0% 95%;
+    --card: 24 9.8% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 346.8 77.2% 49.8%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 346.8 77.2% 49.8%;
+  }
+}
+
+@layer base {
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-background text-foreground font-sans;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-coal-300/50 rounded-full;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-coal-400/60;
+    @apply bg-background text-foreground;
   }
 }
 
-@layer components {
-  .glass-panel {
-    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-lg;
-  }
-  
-  .btn-control {
-    @apply rounded-full p-3 transition-all duration-300 ease-out
-      hover:bg-primary/10 active:bg-primary/20 active:scale-95;
-  }
-  
-  .btn-primary {
-    @apply bg-primary text-white rounded-full px-5 py-2 font-medium shadow-md
-      transition-all duration-300 ease-out
-      hover:bg-primary-600 active:bg-primary-700 active:scale-95;
-  }
+.bg-wood-texture {
+  background-image: url('/wood-background.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
-@layer utilities {
-  .bg-wood-texture {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/wood-background.jpg');
-    background-color: #5c3d2a; /* Fallback color */
-  }
+.glass-panel {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
