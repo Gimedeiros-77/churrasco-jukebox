@@ -180,7 +180,7 @@ const MusicPlayer = ({ audioRef, onAddMusic }: MusicPlayerProps) => {
       </div>
       
       <div className="relative pb-16">
-        <div className="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md py-4 px-2 rounded-b-xl border-t border-white/20">
+        <div className="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md py-2 px-3 rounded-b-xl border-t border-white/20 pt-1 mt-5">
           <div className="flex items-center justify-center gap-4 max-w-full mx-auto">
             <div className="flex justify-center items-center gap-3">
               <button 
