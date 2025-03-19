@@ -1,18 +1,37 @@
 
-import { useEffect } from "react";
+import { useState, useRef } from "react";
 import MusicQueue from "@/components/MusicQueue";
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/store/authStore";
 import { useNavigate } from "react-router-dom";
 import { LogOut, Music, Plus } from "lucide-react";
+import AddMusicModal from "@/components/AddMusicModal";
+import { usePlayerStore } from "@/store/playerStore";
+import MusicPlayer from "@/components/MusicPlayer";
 
 const JukeboxApp = () => {
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
+  const [isAddMusicModalOpen, setIsAddMusicModalOpen] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const { addToQueue } = usePlayerStore();
 
   const handleLogout = () => {
     logout();
     navigate("/login");
+  };
+
+  const handleOpenAddMusicModal = () => {
+    setIsAddMusicModalOpen(true);
+  };
+
+  const handleCloseAddMusicModal = () => {
+    setIsAddMusicModalOpen(false);
+  };
+
+  const handleAddMusic = (track) => {
+    addToQueue(track);
+    setIsAddMusicModalOpen(false);
   };
 
   return (
@@ -51,13 +70,13 @@ const JukeboxApp = () => {
             <p className="text-white">Selecione ou adicione músicas à fila para começar</p>
           </div>
           
-          {/* Add songs button */}
-          <div className="flex-1 flex items-center justify-center">
-            <Button className="text-white">
-              <Plus size={18} className="mr-2" /> 
-              Adicionar Músicas
-            </Button>
-          </div>
+          {/* Player component */}
+          {audioRef && (
+            <MusicPlayer 
+              audioRef={audioRef} 
+              onAddMusic={handleOpenAddMusicModal} 
+            />
+          )}
         </div>
       </main>
       
@@ -65,6 +84,16 @@ const JukeboxApp = () => {
       <footer className="glass-panel p-4 text-center">
         <p className="text-white">© 2023 Churrascaria Original - Sistema de Jukebox</p>
       </footer>
+
+      {/* Add Music Modal */}
+      <AddMusicModal
+        isOpen={isAddMusicModalOpen}
+        onClose={handleCloseAddMusicModal}
+        onAddMusic={handleAddMusic}
+      />
+      
+      {/* Hidden audio element for music playback */}
+      <audio ref={audioRef} className="hidden" />
     </div>
   );
 };
