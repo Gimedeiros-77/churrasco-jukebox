@@ -137,7 +137,7 @@ const AddMusicModal = ({ isOpen, onClose, onAddMusic }: AddMusicModalProps) => {
               </div>
             ) : (
               <div>
-                <Label htmlFor="url">URL da Música</Label>
+                <Label className="text-black" htmlFor="url">URL da Música</Label>
                 <Input
                   id="url"
                   value={url}
@@ -149,7 +149,7 @@ const AddMusicModal = ({ isOpen, onClose, onAddMusic }: AddMusicModalProps) => {
             )}
             
             <div>
-              <Label htmlFor="title">Título da Música</Label>
+              <Label className="text-black" htmlFor="title">Título da Música</Label>
               <Input
                 id="title"
                 value={title}
@@ -160,12 +160,12 @@ const AddMusicModal = ({ isOpen, onClose, onAddMusic }: AddMusicModalProps) => {
             </div>
             
             <div>
-              <Label htmlFor="artist">Artista</Label>
+              <Label htmlFor="artist" className="text-black">Artista</Label>
               <Input
                 id="artist"
                 value={artist}
                 onChange={(e) => setArtist(e.target.value)}
-                placeholder="Ex: João Gilberto"
+                placeholder="Ex: João Gilbertooooo"
                 required
               />
             </div>
