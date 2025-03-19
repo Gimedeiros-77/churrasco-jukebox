@@ -49,8 +49,8 @@ const JukeboxApp = () => {
         
         <div className="flex items-center gap-2">
           <span className="text-white mr-2">Olá, {user?.username}</span>
-          <Button variant="outline" size="sm" onClick={handleLogout} className="text-white border-white/20">
-            <LogOut size={16} className="mr-1" />
+          <Button variant="outline" size="sm" onClick={handleLogout} className="text-black border-white/20">
+            <LogOut size={16} className="mr-1 text-black" />
             Sair
           </Button>
         </div>
