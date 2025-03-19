@@ -45,7 +45,7 @@ const Login = () => {
             className="h-24 mx-auto mb-4"
           />
           <h1 className="text-2xl font-bold text-white">Login do Jukebox</h1>
-          <p className="text-gray-200 mt-2">
+          <p className="text-white mt-2">
             Acesse o sistema de música da Churrascaria Original
           </p>
         </div>
@@ -53,8 +53,8 @@ const Login = () => {
         {error && (
           <Alert variant="destructive" className="mb-4">
             <AlertCircle className="h-4 w-4" />
-            <AlertTitle>Erro</AlertTitle>
-            <AlertDescription>{error}</AlertDescription>
+            <AlertTitle className="text-white">Erro</AlertTitle>
+            <AlertDescription className="text-white">{error}</AlertDescription>
           </Alert>
         )}
 
@@ -87,7 +87,7 @@ const Login = () => {
             Entrar
           </Button>
           
-          <div className="text-center text-sm text-gray-300 mt-4">
+          <div className="text-center text-sm text-white mt-4">
             <p>Usuário padrão: admin</p>
             <p>Senha padrão: user</p>
           </div>

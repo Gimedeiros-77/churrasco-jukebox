@@ -23,12 +23,12 @@ const MusicQueue = () => {
   return (
     <div className="h-full flex flex-col">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-medium text-coal-900">Fila de Reprodução</h2>
-        <span className="text-sm text-coal-600">{queue.length} músicas</span>
+        <h2 className="text-xl font-medium text-white">Fila de Reprodução</h2>
+        <span className="text-sm text-white">{queue.length} músicas</span>
       </div>
       
       {queue.length === 0 ? (
-        <div className="flex-1 flex items-center justify-center text-coal-500">
+        <div className="flex-1 flex items-center justify-center text-white">
           <p>A fila de reprodução está vazia</p>
         </div>
       ) : (
@@ -65,22 +65,22 @@ const MusicQueue = () => {
                     </button>
                     
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-coal-900 font-medium truncate">
+                      <h3 className="text-white font-medium truncate">
                         {track.title}
                       </h3>
-                      <p className="text-sm text-coal-600 truncate">
+                      <p className="text-sm text-white truncate">
                         {track.artist}
                       </p>
                     </div>
                     
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-coal-500">
+                      <span className="text-xs text-white">
                         {formatTime(track.duration)}
                       </span>
                       
                       <button
                         onClick={() => removeFromQueue(track.id)}
-                        className="opacity-0 group-hover:opacity-100 p-1 text-coal-400 hover:text-coal-600 transition-opacity"
+                        className="opacity-0 group-hover:opacity-100 p-1 text-white hover:text-white transition-opacity"
                         aria-label="Remover da fila"
                       >
                         <X size={16} />
